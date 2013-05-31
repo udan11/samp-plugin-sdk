@@ -5,15 +5,28 @@
 //
 //----------------------------------------------------------
 
+#pragma once
+
+//----------------------------------------------------------
+
 #include <cstring>
 
 //----------------------------------------------------------
 
+#include "amx/amx.h"
 #include "amxtable.h"
 
 //----------------------------------------------------------
 
-extern void redirect(AMX *amx, char* from, ucell to, AMX_NATIVE *store);
+#ifdef  __cplusplus
+extern  "C" {
+#endif
+
+extern void amx_Redirect(AMX *amx, char* from, ucell to, AMX_NATIVE *store);
+
+#ifdef  __cplusplus
+}
+#endif
 
 //----------------------------------------------------------
 // EOF

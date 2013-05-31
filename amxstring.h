@@ -18,8 +18,16 @@
 
 //----------------------------------------------------------
 
+#ifdef  __cplusplus
+extern  "C" {
+#endif
+
 extern int amx_GetString_(AMX* amx, cell param, char *&dest);
 extern void amx_SetString_(AMX* amx, cell param, char *str, int len);
+
+#ifdef  __cplusplus
+}
+#endif
 
 //----------------------------------------------------------
 // EOF
