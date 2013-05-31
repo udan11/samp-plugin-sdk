@@ -41,8 +41,8 @@ _declspec(naked)   uint64_t *AMXAPI amx_Align64(uint64_t *v)
         _asm mov eax, pAMXFunctions;
         _asm jmp dword ptr[eax + PLUGIN_AMX_EXPORT_Align64 * 4];
 }
-
 #endif
+
 _declspec(naked) int AMXAPI amx_Allot(AMX *amx, int cells, cell *amx_addr, cell **phys_addr)
 {
         _asm mov eax, pAMXFunctions;
@@ -314,8 +314,8 @@ typedef   uint64_t *  AMXAPI (*amx_Align64_t)(uint64_t *v);
 	amx_Align64_t fn = ((amx_Align64_t*)pAMXFunctions)[PLUGIN_AMX_EXPORT_Align64];
 	return fn(v);
 }
-
 #endif
+
 typedef int  AMXAPI (*amx_Allot_t)(AMX *amx, int cells, cell *amx_addr, cell **phys_addr);
 int AMXAPI amx_Allot(AMX *amx, int cells, cell *amx_addr, cell **phys_addr)
 {
