@@ -49,29 +49,27 @@
      */
     #if defined __MACH__
       #include <ppc/types.h>
-      typedef unsigned short int    uint16_t;
-      typedef unsigned long int     uint32_t;
+      typedef unsigned short int  uint16_t;
+      typedef unsigned long int   uint32_t;
     #elif defined __FreeBSD__
       #include <inttypes.h>
     #else
-      typedef short int             int16_t;
-      typedef unsigned short int    uint16_t;
+      typedef short int           int16_t;
+      typedef unsigned short int  uint16_t;
       #if defined SN_TARGET_PS2
-        typedef int                 int32_t;
-        typedef unsigned int        uint32_t;
+        typedef int               int32_t;
+        typedef unsigned int      uint32_t;
       #else
-	    #if !defined _STDINT
-	      typedef long int          int32_t;
-          typedef unsigned long int uint32_t;
-		#endif
+        typedef long int          int32_t;
+        typedef unsigned long int uint32_t;
       #endif
       #if defined __WIN32__ || defined _WIN32 || defined WIN32
-        typedef __int64	            int64_t;
-        typedef unsigned __int64    uint64_t;
+        typedef __int64	          int64_t;
+        typedef unsigned __int64  uint64_t;
         #define HAVE_I64
       #elif defined __GNUC__
-        typedef long long           int64_t;
-        typedef unsigned long long  uint64_t;
+        typedef long long         int64_t;
+        typedef unsigned long long uint64_t;
         #define HAVE_I64
       #endif
     #endif
