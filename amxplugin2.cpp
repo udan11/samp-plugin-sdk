@@ -35,26 +35,6 @@ int AMXAPI amx_PushAddress(AMX *amx, cell *address) {
 	return amx_Push(amx,xaddr);
 }
 
-int AMXAPI amx_GetString_(AMX *amx, cell param, char *&dest) {
-	cell *ptr;
-	amx_GetAddr(amx, param, &ptr);
-	int len;
-	amx_StrLen(ptr, &len);
-	dest = (char*) malloc((len + 1) * sizeof(char));
-	if (dest != NULL) {
-		amx_GetString(dest, ptr, 0, UNLIMITED);
-		dest[len] = 0;
-		return len;
-	}
-	return 0;
-}
-
-void AMXAPI amx_SetString_(AMX *amx, cell param, char *str, int len) {
-	cell *dest;
-	amx_GetAddr(amx, param, &dest);
-	amx_SetString(dest, str, 0, 0, len);
-}
-
 void AMXAPI amx_Redirect(AMX *amx, char *from, ucell to, AMX_NATIVE *store) {
 	AMX_HEADER *hdr = (AMX_HEADER*) amx->base;
 	AMX_FUNCSTUB *func;
@@ -68,6 +48,41 @@ void AMXAPI amx_Redirect(AMX *amx, char *from, ucell to, AMX_NATIVE *store) {
 			return;
 		}
 	}
+}
+
+int AMXAPI amx_GetCString(AMX *amx, cell param, char *&dest) {
+	cell *ptr;
+	amx_GetAddr(amx, param, &ptr);
+	int len;
+	amx_StrLen(ptr, &len);
+	dest = (char*) malloc((len + 1) * sizeof(char));
+	if (dest != NULL) {
+		amx_GetString(dest, ptr, 0, UNLIMITED);
+		dest[len] = 0;
+		return len;
+	}
+	return 0;
+}
+
+void AMXAPI amx_SetCString(AMX *amx, cell param, char *str, int len) {
+	cell *dest;
+	amx_GetAddr(amx, param, &dest);
+	amx_SetString(dest, str, 0, 0, len);
+}
+
+std::string AMXAPI amx_GetCppString(AMX *amx, cell param) {
+	char *tmp;
+	amx_StrParam(amx, param, tmp);
+	if (tmp != NULL) {
+		return tmp;
+	}
+	return "";
+}
+
+void AMXAPI amx_SetCppString(AMX *amx, cell param, std::string str, int len) {
+	cell *dest;
+	amx_GetAddr(amx, param, &dest);
+	amx_SetString(dest, str.c_str(), 0, 0, len);
 }
 
 //----------------------------------------------------------
