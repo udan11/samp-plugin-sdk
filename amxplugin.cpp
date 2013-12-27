@@ -40,8 +40,8 @@ typedef   uint64_t *  AMXAPI (*amx_Align64_t)(uint64_t *v);
 	amx_Align64_t fn = ((amx_Align64_t*)pAMXFunctions)[PLUGIN_AMX_EXPORT_Align64];
 	return fn(v);
 }
-
 #endif
+
 typedef int  AMXAPI (*amx_Allot_t)(AMX *amx, int cells, cell *amx_addr, cell **phys_addr);
 int AMXAPI amx_Allot(AMX *amx, int cells, cell *amx_addr, cell **phys_addr)
 {
